@@ -9,7 +9,7 @@ public class CardTest {
     @DisplayName("카드에는 숫자가 있다")
     void cardNumberTest() {
         // given
-        Card card = new Card(CardType.ONE, "CLOVER");
+        Card card = new Card(CardType.ONE, CardShape.HEART);
         //then
         assertThat(card.getNumber()).isEqualTo(CardType.ONE);
     }
@@ -17,20 +17,20 @@ public class CardTest {
     @Test
     @DisplayName("카드에는 문양이 있다")
     void cardShapeTest() {
-        Card card = new Card(CardType.ONE, "CLOVER");
+        Card card = new Card(CardType.ONE, CardShape.CLOVER);
 
         // when
-        String cardShape = card.getShape();
+        CardShape cardShape = card.getShape();
 
         // then
-        assertThat(cardShape).isEqualTo("CLOVER");
+        assertThat(cardShape).isEqualTo(CardShape.CLOVER);
     }
 
     @Test
     @DisplayName("카드 숫자에는 글자 카드가 존재한다")
     void SpecialNumberCardTest() {
         // given
-        Card card = new Card(CardType.KING, "CLOVER");
+        Card card = new Card(CardType.KING, CardShape.SPADE);
         CardType cardShape = card.getNumber();
         // when
 

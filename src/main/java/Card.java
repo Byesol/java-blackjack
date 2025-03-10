@@ -1,9 +1,9 @@
 public class Card {
 
     private final CardType number;
-    private final String shape;
+    private final CardShape shape;
 
-    public Card(CardType number, String shape) {
+    public Card(CardType number, CardShape shape) {
         this.number = number;
         this.shape = shape;
     }
@@ -12,7 +12,7 @@ public class Card {
         return number;
     }
 
-    public String getShape() {
+    public CardShape getShape() {
         return shape;
     }
 }
