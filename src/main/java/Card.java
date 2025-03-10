@@ -1,14 +1,14 @@
 public class Card {
 
-    private final int number;
+    private final CardType number;
     private final String shape;
 
-    public Card(int number, String shape) {
+    public Card(CardType number, String shape) {
         this.number = number;
         this.shape = shape;
     }
 
-    public int getNumber() {
+    public CardType getNumber() {
         return number;
     }
 

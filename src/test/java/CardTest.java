@@ -9,15 +9,15 @@ public class CardTest {
     @DisplayName("카드에는 숫자가 있다")
     void cardNumberTest() {
         // given
-        Card card = new Card(1, "CLOVER");
+        Card card = new Card(CardType.ONE, "CLOVER");
         //then
-        assertThat(card.getNumber()).isEqualTo(1);
+        assertThat(card.getNumber()).isEqualTo(CardType.ONE);
     }
 
     @Test
     @DisplayName("카드에는 문양이 있다")
     void cardShapeTest() {
-        Card card = new Card(1, "CLOVER");
+        Card card = new Card(CardType.ONE, "CLOVER");
 
         // when
         String cardShape = card.getShape();
@@ -25,5 +25,18 @@ public class CardTest {
         // then
         assertThat(cardShape).isEqualTo("CLOVER");
     }
+
+    @Test
+    @DisplayName("카드 숫자에는 글자 카드가 존재한다")
+    void SpecialNumberCardTest() {
+        // given
+        Card card = new Card(CardType.KING, "CLOVER");
+        CardType cardShape = card.getNumber();
+        // when
+
+        // then
+        assertThat(cardShape).isEqualTo(CardType.KING);
+    }
+
 
 }
