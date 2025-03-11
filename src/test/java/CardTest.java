@@ -11,7 +11,7 @@ public class CardTest {
         // given
         Card card = new Card(CardType.ONE, CardShape.HEART);
         //then
-        assertThat(card.getNumber()).isEqualTo(CardType.ONE);
+        assertThat(card.getType()).isEqualTo(CardType.ONE);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class CardTest {
     void SpecialNumberCardTest() {
         // given
         Card card = new Card(CardType.KING, CardShape.SPADE);
-        CardType cardShape = card.getNumber();
+        CardType cardShape = card.getType();
         // when
 
         // then
