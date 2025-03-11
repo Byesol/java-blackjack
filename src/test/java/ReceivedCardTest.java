@@ -68,7 +68,7 @@ public class ReceivedCardTest {
     }
 
     @Test
-    void coutAcePointTest() {
+    void countAcePointTest() {
         // given
         Card card1 = new Card(CardType.ONE, CardShape.SPADE);
         Card card2 = new Card(CardType.ONE, CardShape.SPADE);
@@ -80,5 +80,23 @@ public class ReceivedCardTest {
 
         // then
         assertThat(point).isEqualTo(12);
+    }
+
+    @Test
+    @DisplayName("카드가 버스트되는지 확인")
+    void cardBustTest() {
+        // given
+        Card card1 = new Card(CardType.TWO, CardShape.SPADE);
+        Card card2 = new Card(CardType.JACK, CardShape.SPADE);
+        Card card3 = new Card(CardType.JACK, CardShape.SPADE);
+        ReceivedCard receivedCard = new ReceivedCard();
+        receivedCard.receiveCard(card1);
+        receivedCard.receiveCard(card2);
+        receivedCard.receiveCard(card3);
+        boolean isBust = receivedCard.isBust();
+        // when
+
+        // then
+        assertThat(isBust).isEqualTo(true);
     }
 }
