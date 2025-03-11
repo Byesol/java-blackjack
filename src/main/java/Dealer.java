@@ -20,4 +20,8 @@ public class Dealer {
             receivedCard.receiveCard(deck.drawCard());
         }
     }
+
+    public boolean isBust() {
+        return receivedCard.isBust();
+    }
 }

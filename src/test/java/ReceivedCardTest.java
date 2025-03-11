@@ -24,14 +24,16 @@ public class ReceivedCardTest {
 
         // given
         Card card1 = new Card(CardType.ONE, CardShape.SPADE);
-        Card card2 = new Card(CardType.JACK, CardShape.SPADE);
+        Card card2 = new Card(CardType.ONE, CardShape.SPADE);
+        Card card3 = new Card(CardType.NINE, CardShape.SPADE);
         ReceivedCard receivedCard = new ReceivedCard();
         receivedCard.receiveCard(card1);
         receivedCard.receiveCard(card2);
+        receivedCard.receiveCard(card3);
         // when
         int point = receivedCard.calculatePoint();
         // then
-        assertThat(point).isEqualTo(11);
+        assertThat(point).isEqualTo(21);
     }
 
     @Nested

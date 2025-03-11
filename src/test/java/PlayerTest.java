@@ -38,4 +38,22 @@ public class PlayerTest {
         // then
         assertThat(player.getReceivedCard().size()).isEqualTo(1);
     }
+
+    @Test
+    void isBustTest() {
+        // given
+        Player player = new Player("벡터");
+        Card card1 = new Card(CardType.JACK, CardShape.SPADE);
+        Card card2 = new Card(CardType.JACK, CardShape.SPADE);
+        Card card3 = new Card(CardType.JACK, CardShape.SPADE);
+        // when
+
+        player.putCard(card1);
+        player.putCard(card2);
+        player.putCard(card3);
+        boolean isBust = player.isBust();
+
+        // then
+        assertThat(isBust).isTrue();
+    }
 }

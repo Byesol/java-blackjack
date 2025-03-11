@@ -46,5 +46,23 @@ public class DealerTest {
 
     }
 
+    @Test
+    @DisplayName("딜러는 버스트한다")
+    void dealerBustTest() {
+        // given
+        Dealer dealer = new Dealer();
+        Card card1 = new Card(CardType.TWO, CardShape.SPADE);
+        Card card2 = new Card(CardType.JACK, CardShape.SPADE);
+        Card card3 = new Card(CardType.JACK, CardShape.SPADE);
+        dealer.putCard(card1);
+        dealer.putCard(card2);
+        dealer.putCard(card3);
+        boolean isBust = dealer.isBust();
+
+        // then
+        assertThat(isBust).isTrue();
+
+    }
+
 
 }

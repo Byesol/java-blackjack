@@ -19,11 +19,20 @@ public class Player {
         return name;
     }
 
+    public void firstPutCard(Card card1, Card card2) {
+        receivedCard.receiveCard(card1);
+        receivedCard.receiveCard(card2);
+    }
+
     public void putCard(Card card) {
         receivedCard.receiveCard(card);
     }
 
     public ReceivedCard getReceivedCard() {
         return receivedCard;
+    }
+
+    public boolean isBust() {
+        return receivedCard.isBust();
     }
 }
