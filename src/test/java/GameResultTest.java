@@ -2,6 +2,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -54,8 +55,8 @@ public class GameResultTest {
         dealer.putCard(card1);
         dealer.putCard(card2);
         player1.putCard(card3);
-        boolean isWin = blackJackGame.decidePlayerWin(player1, dealer);
-        assertThat(isWin).isFalse();
+        GameResult isWin = GameResult.decidePlayerWin(player1, dealer);
+        assertThat(isWin).isEqualTo(GameResult.LOSE);
     }
 
     @Test
@@ -67,8 +68,8 @@ public class GameResultTest {
         player1.putCard(card1);
         player1.putCard(card2);
         dealer.putCard(card3);
-        boolean isWin = blackJackGame.decidePlayerWin(player1, dealer);
-        assertThat(isWin).isTrue();
+        GameResult isWin = GameResult.decidePlayerWin(player1, dealer);
+        assertThat(isWin).isEqualTo(GameResult.WIN);
     }
 
     @Test
@@ -84,8 +85,8 @@ public class GameResultTest {
         player1.putCard(card2);
         player1.putCard(card3);
         dealer.putCard(card3);
-        boolean isWin = blackJackGame.decidePlayerWin(player1, dealer);
-        assertThat(isWin).isFalse();
+        GameResult isWin = GameResult.decidePlayerWin(player1, dealer);
+        assertThat(isWin).isEqualTo(GameResult.LOSE);
     }
 
 
@@ -103,8 +104,8 @@ public class GameResultTest {
         dealer.putCard(card1);
         dealer.putCard(card2);
         dealer.putCard(card3);
-        boolean isWin = blackJackGame.decidePlayerWin(player1, dealer);
-        assertThat(isWin).isTrue();
+        GameResult isWin = GameResult.decidePlayerWin(player1, dealer);
+        assertThat(isWin).isEqualTo(GameResult.WIN);
     }
 
 
@@ -123,8 +124,8 @@ public class GameResultTest {
         dealer.putCard(card1);
         dealer.putCard(card2);
         dealer.putCard(card3);
-        boolean isWin = blackJackGame.decidePlayerWin(player1, dealer);
-        assertThat(isWin).isFalse();
+        GameResult isWin = GameResult.decidePlayerWin(player1, dealer);
+        assertThat(isWin).isEqualTo(GameResult.LOSE);
     }
 
     @Test
@@ -143,11 +144,10 @@ public class GameResultTest {
         player2.putCard(card4);
         player2.putCard(card5);
         dealer.putCard(card3);
-        Map<Player, GameResult.WIN> playersResult = blackJackGame.resultOfPlaysers();
-
+        Map<Player, GameResult> playersResult = blackJackGame.resultOfPlayers();
         // when
-
         // then
-        assertThat().isEqualTo(expected);
+        assertThat(playersResult.get(player1)).isEqualTo(GameResult.LOSE);
+        assertThat(playersResult.get(player2)).isEqualTo(GameResult.WIN);
     }
 }

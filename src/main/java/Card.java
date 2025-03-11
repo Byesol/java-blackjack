@@ -1,5 +1,6 @@
 public class Card {
 
+
     private final CardType cardType;
     private final CardShape shape;
 

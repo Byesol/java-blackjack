@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class BlackJackGame {
 
     private Dealer dealer;
@@ -21,20 +24,14 @@ public class BlackJackGame {
         dealer.drawUntilLimit(deck);
     }
 
-    public boolean decidePlayerWin(Player player, Dealer dealer) {
-        int playerPoint = player.getReceivedCard().calculatePoint();
-        int dealerPoint = dealer.getReceivedCard().calculatePoint();
-        if (player.isBust()) {
-            return false;
-        }
-        if (dealer.isBust()) {
-            return true;
-        }
-        if (playerPoint > dealerPoint) {
-            return true;
-        }
-        return false;
 
-
+    public Map<Player, GameResult> resultOfPlayers() {
+        Map<Player, GameResult> resultMap = new HashMap<>();
+        players.getPlayers()
+                .forEach(player -> {
+                    GameResult gameResult = GameResult.decidePlayerWin(player, dealer);
+                    resultMap.put(player, gameResult);
+                });
+        return resultMap;
     }
 }
