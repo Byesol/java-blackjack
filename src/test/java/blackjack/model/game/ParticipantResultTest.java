@@ -9,16 +9,36 @@ import blackjack.model.player.Dealer;
 import blackjack.model.player.Participant;
 import blackjack.model.player.Participants;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ParticipantResultTest {
+    Dealer bustDealer;
+    Participant bustParticipant;
+    Participant participant2;
+
+    @BeforeEach
+    void setup() {
+        bustDealer = new Dealer();
+        bustDealer.putCard(new Card(CardShape.CLOVER, CardType.JACK));
+        bustDealer.putCard(new Card(CardShape.CLOVER, CardType.QUEEN));
+        bustDealer.putCard(new Card(CardShape.CLOVER, CardType.KING));
+
+        bustParticipant = new Participant("버스트");
+        bustParticipant.putCard(new Card(CardShape.CLOVER, CardType.JACK));
+        bustParticipant.putCard(new Card(CardShape.CLOVER, CardType.QUEEN));
+        bustParticipant.putCard(new Card(CardShape.CLOVER, CardType.KING));
+
+        participant2 = new Participant("임시");
+
+    }
+
 
     @Test
     void 플레이어가_버스트가_아니고_참가자가_패배인_경우() {
         // given
         Dealer dealer = new Dealer();
         Participant participant1 = new Participant("프리");
-        Participant participant2 = new Participant("벡터");
 
         Participants participants = new Participants(List.of(participant1, participant2));
         dealer.putCard(new Card(CardShape.CLOVER, CardType.NORMAL_8));
@@ -36,19 +56,12 @@ class ParticipantResultTest {
     void 참가자가_버스트고_딜러가_버스트가_아닌_경우_딜러가_승리한다() {
         // given
         Dealer dealer = new Dealer();
-        Participant participant1 = new Participant("프리");
-        Participant participant2 = new Participant("벡터");
-
-        Participants participants = new Participants(List.of(participant1, participant2));
-
+        Participants participants = new Participants(List.of(bustParticipant, participant2));
         dealer.putCard(new Card(CardShape.CLOVER, CardType.NORMAL_8));
-        participant1.putCard(new Card(CardShape.CLOVER, CardType.JACK));
-        participant1.putCard(new Card(CardShape.CLOVER, CardType.QUEEN));
-        participant1.putCard(new Card(CardShape.CLOVER, CardType.KING));
 
         // when
         GameResult gameResult = new GameResult(dealer, participants);
-        ParticipantResult result = gameResult.getWinLoseResult().get(participant1);
+        ParticipantResult result = gameResult.getWinLoseResult().get(bustParticipant);
 
         // then
         assertThat(result).isEqualTo(ParticipantResult.LOSE);
@@ -60,17 +73,11 @@ class ParticipantResultTest {
         // given
         Dealer dealer = new Dealer();
         Participant participant1 = new Participant("프리");
-        Participant participant2 = new Participant("벡터");
-
         Participants participants = new Participants(List.of(participant1, participant2));
-
         participant1.putCard(new Card(CardShape.CLOVER, CardType.NORMAL_8));
-        dealer.putCard(new Card(CardShape.CLOVER, CardType.JACK));
-        dealer.putCard(new Card(CardShape.CLOVER, CardType.QUEEN));
-        dealer.putCard(new Card(CardShape.CLOVER, CardType.KING));
 
         // when
-        GameResult gameResult = new GameResult(dealer, participants);
+        GameResult gameResult = new GameResult(bustDealer, participants);
         ParticipantResult result = gameResult.getWinLoseResult().get(participant1);
 
         // then
@@ -82,22 +89,11 @@ class ParticipantResultTest {
     void 플레이어_모두_버스트인_경우_딜러가_승리한다() {
         // given
         Dealer dealer = new Dealer();
-        Participant participant1 = new Participant("프리");
-        Participant participant2 = new Participant("벡터");
-
-        Participants participants = new Participants(List.of(participant1, participant2));
-
-        participant1.putCard(new Card(CardShape.CLOVER, CardType.NORMAL_8));
-        dealer.putCard(new Card(CardShape.CLOVER, CardType.JACK));
-        dealer.putCard(new Card(CardShape.CLOVER, CardType.QUEEN));
-        dealer.putCard(new Card(CardShape.CLOVER, CardType.KING));
-        participant1.putCard(new Card(CardShape.CLOVER, CardType.JACK));
-        participant1.putCard(new Card(CardShape.CLOVER, CardType.QUEEN));
-        participant1.putCard(new Card(CardShape.CLOVER, CardType.KING));
+        Participants participants = new Participants(List.of(bustParticipant, participant2));
 
         // when
-        GameResult gameResult = new GameResult(dealer, participants);
-        ParticipantResult result = gameResult.getWinLoseResult().get(participant1);
+        GameResult gameResult = new GameResult(bustDealer, participants);
+        ParticipantResult result = gameResult.getWinLoseResult().get(bustParticipant);
         // then
         assertThat(result).isEqualTo(ParticipantResult.LOSE);
 

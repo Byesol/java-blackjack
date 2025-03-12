@@ -43,10 +43,6 @@ public class BlackJackGame {
     public Participant getCurrentTurnParticipant() {
         return readyQueue.getFirst();
     }
-//
-//    public boolean isDrawableDealerCard() {
-//        return dealer.calculatePoint() <= ACE_THRESHOLD;
-//    }
 
     public boolean drewDealerCards() {
         return dealer.drewUnderThereshold(deck.drawCard());

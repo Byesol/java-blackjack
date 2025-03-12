@@ -20,22 +20,21 @@ public class BlackJackController {
     }
 
     public void run() {
-
         Participants participants = Parser.parseParticipants(inputView.inputParticipant());
         Dealer dealer = new Dealer();
-        BlackJackGame blackJackGame = new BlackJackGame(new DeckInitializer(),
-                dealer,
-                participants
-        );
+        BlackJackGame blackJackGame = new BlackJackGame(new DeckInitializer(), dealer, participants);
+
         blackJackGame.initializeGame();
         outputView.outputFirstCardDistributionResult(participants, dealer);
+
         inputMoreCard(blackJackGame);
         giveMoreDealerCard(blackJackGame, dealer);
-        outputView.outputFinalCardStatus(dealer, participants);
+
         GameResult gameResult = new GameResult(dealer, participants);
-        outputView.outputFinalResult(gameResult, gameResult.getDealerWinCount(),
-                gameResult.getDealerLoseCount());
+        outputView.outputFinalCardStatus(dealer, participants);
+        outputView.outputFinalResult(gameResult, gameResult.getDealerWinCount(), gameResult.getDealerLoseCount());
     }
+
 
     private void inputMoreCard(BlackJackGame blackJackGame) {
         while (blackJackGame.hasReady()) {
