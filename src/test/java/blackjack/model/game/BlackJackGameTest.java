@@ -2,9 +2,6 @@ package blackjack.model.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import blackjack.model.card.Card;
-import blackjack.model.card.CardShape;
-import blackjack.model.card.CardType;
 import blackjack.model.player.Dealer;
 import blackjack.model.player.Participant;
 import blackjack.model.player.Participants;
@@ -87,36 +84,5 @@ class BlackJackGameTest {
         assertThat(dealer.getReceivedCards().size()).isEqualTo(1);
     }
 
-    @Test
-    void 딜러의_포인트가_16_이하면_카드를_더_받아야_한다() {
-        // given
-        Dealer dealer = new Dealer();
-        Participant participant1 = new Participant("벡터");
-        Participant participant2 = new Participant("한스");
-        Participants participants = new Participants(List.of(participant1, participant2));
-        DeckInitializer deckInitializer = new DeckInitializer();
-        BlackJackGame blackJackGame = new BlackJackGame(deckInitializer, dealer, participants);
-        dealer.putCard(new Card(CardShape.HEART, CardType.NORMAL_2));
-        // when
 
-        // then
-        assertThat(blackJackGame.isDrawableDealerCard()).isTrue();
-    }
-
-    @Test
-    void 딜러의_포인트가_17_이상이면_카드를_더_받지_않는다() {
-        // given
-        Dealer dealer = new Dealer();
-        Participant participant1 = new Participant("벡터");
-        Participant participant2 = new Participant("한스");
-        Participants participants = new Participants(List.of(participant1, participant2));
-        DeckInitializer deckInitializer = new DeckInitializer();
-        BlackJackGame blackJackGame = new BlackJackGame(deckInitializer, dealer, participants);
-        dealer.putCard(new Card(CardShape.HEART, CardType.KING));
-        dealer.putCard(new Card(CardShape.HEART, CardType.NORMAL_9));
-        // when
-
-        // then
-        assertThat(blackJackGame.isDrawableDealerCard()).isFalse();
-    }
 }

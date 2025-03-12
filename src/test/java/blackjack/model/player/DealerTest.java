@@ -24,4 +24,6 @@ class DealerTest {
         dealer.putCard(new Card(CardShape.CLOVER, CardType.NORMAL_8));
         assertThat(dealer.getReceivedCards().size()).isEqualTo(1);
     }
+
+
 }

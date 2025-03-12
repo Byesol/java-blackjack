@@ -23,8 +23,7 @@ public class BlackJackController {
 
         Participants participants = Parser.parseParticipants(inputView.inputParticipant());
         Dealer dealer = new Dealer();
-        BlackJackGame blackJackGame = new BlackJackGame(
-                new DeckInitializer(),
+        BlackJackGame blackJackGame = new BlackJackGame(new DeckInitializer(),
                 dealer,
                 participants
         );
@@ -52,8 +51,7 @@ public class BlackJackController {
     }
 
     private void giveMoreDealerCard(BlackJackGame blackJackGame, Dealer dealer) {
-        while (blackJackGame.isDrawableDealerCard()) {
-            blackJackGame.drewDealerCards();
+        while (blackJackGame.drewDealerCards()) {
             outputView.outputDealerGetCard();
             outputView.printPlayerCardStatus("딜러", dealer);
         }

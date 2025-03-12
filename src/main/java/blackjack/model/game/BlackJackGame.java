@@ -8,7 +8,6 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 public class BlackJackGame {
-    public static final int ACE_THRESHOLD = 16;
 
     private final Deck deck;
     private final Participants participants;
@@ -44,13 +43,13 @@ public class BlackJackGame {
     public Participant getCurrentTurnParticipant() {
         return readyQueue.getFirst();
     }
+//
+//    public boolean isDrawableDealerCard() {
+//        return dealer.calculatePoint() <= ACE_THRESHOLD;
+//    }
 
-    public boolean isDrawableDealerCard() {
-        return dealer.calculatePoint() <= ACE_THRESHOLD;
-    }
-
-    public void drewDealerCards() {
-        dealer.putCard(deck.drawCard());
+    public boolean drewDealerCards() {
+        return dealer.drewUnderThereshold(deck.drawCard());
     }
 
     public boolean hasReady() {
