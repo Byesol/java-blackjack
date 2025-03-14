@@ -14,7 +14,7 @@ public class ReceivedCard {
         return receivedCard.size();
     }
 
-    private List<Card> getReceivedCard() {
+    public List<Card> getListReceiveCard() {
         return receivedCard;
     }
 
