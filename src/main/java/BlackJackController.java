@@ -10,7 +10,8 @@ public class BlackJackController {
     }
 
     public void run() {
-        String input =   inputView.inputPlayers();
+
+        Players players = Players.from(inputView.inputPlayers());
         Dealer dealer = new Dealer();
         BlackJackGame blackJackGame = new BlackJackGame()
     }

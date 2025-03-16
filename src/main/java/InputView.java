@@ -8,7 +8,7 @@ public class InputView {
     public List<String> inputPlayers() {
         System.out.println(String.format("플레이어 입력해라"));
         String input = SCANNER.nextLine();
-
-
+        String[] split = input.split(",");
+        return List.of(split);
     }
 }
